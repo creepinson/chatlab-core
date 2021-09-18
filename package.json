@@ -1,20 +1,23 @@
 {
   "name": "@theoparis/chatlab-engine",
   "version": "0.0.1",
-  "description": "ChatLab WebGL Engine",
+  "private": false,
+  "description": "Chatlab WebGL Engine",
   "type": "module",
   "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/index.cjs"
-    }
-  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
+  },
+  "files": [
+    "dist",
+    "readme.md"
+  ],
+  "directories": {
+    "example": "examples"
   },
   "husky": {
     "hooks": {
@@ -35,13 +38,16 @@
   },
   "keywords": [
     "typescript",
-    "node"
+    "webgl"
   ],
   "author": "Theo Paris",
   "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "13.1.0",
     "@commitlint/config-conventional": "13.1.0",
+    "@parcel/packager-ts": "2.0.0-nightly.842+2013dfff",
+    "@parcel/transformer-typescript-tsc": "^2.0.0-nightly.842",
+    "@parcel/transformer-typescript-types": "^2.0.0-nightly.842",
     "@types/jest": "27.0.1",
     "@types/node": "14.14.41",
     "@typescript-eslint/eslint-plugin": "^4.31.1",
@@ -55,7 +61,7 @@
     "husky": "7.0.1",
     "jest": "27.1.1",
     "nodemon": "^2.0.12",
-    "parcel": "^2.0.0-rc.0",
+    "parcel": "^2.0.0-nightly.840",
     "parcel-plugin-glsl-include": "^0.1.0",
     "pinst": "^2.1.6",
     "prettier": "2.4.0",
