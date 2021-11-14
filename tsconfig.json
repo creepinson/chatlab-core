@@ -12,6 +12,7 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "declaration": true,
+    "emitDeclarationOnly": true,
     "sourceMap": true,
     "outDir": "dist"
   },

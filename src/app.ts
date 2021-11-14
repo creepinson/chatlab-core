@@ -1,5 +1,5 @@
 import "@abraham/reflection";
-import { mat4 } from "gl-matrix";
+import { mat4, vec3 } from "gl-matrix";
 import { Engine } from "typed-ecstasy";
 import { createBasicShader } from "./shaders/basic";
 import { Transform } from "./components";
@@ -28,12 +28,17 @@ export class App {
 
     const shader = createBasicShader(this.gl);
 
-    const cameraMatrix = mat4.perspective(
+    let cameraMatrix = mat4.perspective(
       mat4.create(),
       Math.PI / 4,
       this.gl.drawingBufferWidth / this.gl.drawingBufferHeight,
       0.1,
       1000
+    );
+    cameraMatrix = mat4.mul(
+      mat4.create(),
+      cameraMatrix,
+      mat4.fromTranslation(mat4.create(), vec3.fromValues(0, 0, -5))
     );
 
     for (const entity of this.entityManager.getAll()) {

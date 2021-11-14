@@ -4,17 +4,21 @@
   "private": false,
   "description": "Chatlab WebGL Engine",
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
+  "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "exports": {
+    "./": "./dist/"
+  },
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
   },
   "files": [
-    "dist",
-    "readme.md"
+    "dist/index.js",
+    "readme.md",
+    "LICENSE",
+    "dist/index.d.ts"
   ],
   "directories": {
     "example": "examples"
@@ -26,12 +30,11 @@
   },
   "scripts": {
     "cm": "cz",
-    "build-example": "parcel build index.html",
-    "build": "parcel build src/index.ts --dist-dir dist",
-    "dev": "parcel index.html",
-    "test": "jest",
-    "lint": "eslint src/**/*.ts --fix",
-    "coverage": "pnpm run test -- --coverage",
+    "build": "NODE_ENV=production node build.js && tsc -b",
+    "dev": "NODE_ENV=development node build.js && tsc -b",
+    "test": "jest --coverage",
+    "lint": "eslint src/**/*.ts",
+    "lint:fix": "eslint src/**/*.ts --fix",
     "prepublishOnly": "pinst --disable && pnpm run lint && pnpm run test && pnpm run build",
     "postinstall": "husky install",
     "postpublish": "pinst --enable"
@@ -43,34 +46,32 @@
   "author": "Theo Paris",
   "license": "MIT",
   "devDependencies": {
-    "@commitlint/cli": "13.1.0",
-    "@commitlint/config-conventional": "13.1.0",
-    "@parcel/packager-ts": "2.0.0-nightly.842+2013dfff",
-    "@parcel/transformer-typescript-tsc": "^2.0.0-nightly.842",
-    "@parcel/transformer-typescript-types": "^2.0.0-nightly.842",
-    "@types/jest": "27.0.1",
-    "@types/node": "14.14.41",
-    "@typescript-eslint/eslint-plugin": "^4.31.1",
-    "@typescript-eslint/parser": "^4.31.1",
-    "commitizen": "^4.2.3",
+    "@commitlint/cli": "14.1.0",
+    "@commitlint/config-conventional": "14.1.0",
+    "@theoparis/eslint-config": "github:creepinson/eslint-config#update",
+    "@types/jest": "27.0.2",
+    "@types/node": "16.11.7",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "commitizen": "^4.2.4",
     "cz-conventional-changelog": "^3.3.0",
-    "esbuild": "^0.12.15",
-    "eslint": "7.32.0",
+    "esbuild": "^0.13.13",
+    "esbuild-server-plugin": "^1.2.0",
+    "eslint": "8.2.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "husky": "7.0.1",
-    "jest": "27.1.1",
-    "nodemon": "^2.0.12",
-    "parcel": "^2.0.0-nightly.840",
-    "parcel-plugin-glsl-include": "^0.1.0",
+    "husky": "7.0.4",
+    "jest": "27.3.1",
+    "nodemon": "^2.0.15",
     "pinst": "^2.1.6",
-    "prettier": "2.4.0",
-    "sirv": "^1.0.17",
-    "typescript": "4.4.3"
+    "prettier": "2.4.1",
+    "sirv": "^1.0.18",
+    "tiny-glob": "^0.2.9",
+    "typescript": "4.4.4"
   },
   "dependencies": {
     "@abraham/reflection": "^0.8.0",
-    "gl-matrix": "^3.3.0",
+    "gl-matrix": "^3.4.3",
     "typed-ecstasy": "^2.1.0",
     "typed-glsl": "^0.11.0",
     "typed-signals": "^2.3.0",

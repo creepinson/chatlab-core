@@ -4,16 +4,10 @@ module.exports = {
     node: true,
   },
   extends: [
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended",
+    "@theoparis/eslint-config"
   ],
-  parser: "@typescript-eslint/parser",
-  parserOptions: {
-    ecmaVersion: 12,
-    sourceType: "module",
-  },
-  plugins: ["@typescript-eslint", "prettier"],
+  plugins: [],
   rules: {
-    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-shadow": "off"
   },
 };

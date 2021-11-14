@@ -26,14 +26,12 @@ export const createDefaultMaterial = (): Material => ({
   color: vec4.fromValues(1, 1, 1, 1),
 });
 
-export const createTriangleMesh = (): Mesh => {
-  return {
-    vertices: new Float32Array([
-      // x, y, z,
-      -0.5, 0.5, 0.0, -0.5, -0.5, 0.0, 0.5, -0.5, 0.0,
-    ]),
-  };
-};
+export const createTriangleMesh = (): Mesh => ({
+  vertices: new Float32Array([
+    // x, y, z,
+    -0.5, 0.5, 0.0, -0.5, -0.5, 0.0, 0.5, -0.5, 0.0,
+  ]),
+});
 
 export const createTriangle = (gl: WebGL2RenderingContext): Model => {
   const mesh = createTriangleMesh();
@@ -55,15 +53,13 @@ export const createTriangle = (gl: WebGL2RenderingContext): Model => {
   };
 };
 
-export const createSquareMesh = (): Mesh => {
-  return {
-    vertices: new Float32Array([
-      // x, y, z,
-      -0.5, 0.5, 0.0, -0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.5, 0.5, 0.0,
-    ]),
-    indices: new Uint16Array([0, 1, 2, 0, 2, 3]),
-  };
-};
+export const createSquareMesh = (): Mesh => ({
+  vertices: new Float32Array([
+    // x, y, z,
+    -0.5, 0.5, 0.0, -0.5, -0.5, 0.0, 0.5, -0.5, 0.0, 0.5, 0.5, 0.0,
+  ]),
+  indices: new Uint16Array([0, 1, 2, 0, 2, 3]),
+});
 
 export const createSquare = (gl: WebGL2RenderingContext): Model => {
   const { vertices, indices } = createSquareMesh();
@@ -89,21 +85,19 @@ export const createSquare = (gl: WebGL2RenderingContext): Model => {
   };
 };
 
-export const createCubeMesh = (): Mesh => {
-  return {
-    vertices: new Float32Array([
-      // x, y, z,
-      -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, -1, 1, 1, 1, 1,
-      -1, 1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1,
-      1, 1, 1, 1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1,
-      -1, 1, 1, 1, 1, 1, 1, 1, -1,
-    ]),
-    indices: new Uint16Array([
-      0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12,
-      14, 15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23,
-    ]),
-  };
-};
+export const createCubeMesh = (): Mesh => ({
+  vertices: new Float32Array([
+    // x, y, z,
+    -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, -1, -1, -1, 1, 1, -1, 1, 1, 1, 1,
+    -1, 1, 1, -1, -1, -1, -1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1, -1, 1, 1, -1,
+    1, 1, 1, 1, -1, 1, -1, -1, -1, -1, -1, 1, 1, -1, 1, 1, -1, -1, -1, 1, -1,
+    -1, 1, 1, 1, 1, 1, 1, 1, -1,
+  ]),
+  indices: new Uint16Array([
+    0, 1, 2, 0, 2, 3, 4, 5, 6, 4, 6, 7, 8, 9, 10, 8, 10, 11, 12, 13, 14, 12, 14,
+    15, 16, 17, 18, 16, 18, 19, 20, 21, 22, 20, 22, 23,
+  ]),
+});
 
 export const createCube = (gl: WebGL2RenderingContext): Model => {
   const { vertices, indices } = createCubeMesh();

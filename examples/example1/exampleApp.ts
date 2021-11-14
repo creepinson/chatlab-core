@@ -6,7 +6,13 @@ export class ExampleApp extends App {
   constructor(gl: WebGL2RenderingContext) {
     super(gl);
     const testEntity = new Entity();
-    testEntity.add(new Transform(vec3.fromValues(0, 0, 0)));
+    testEntity.add(
+      new Transform(
+        vec3.fromValues(0, 0, 0),
+        vec3.fromValues(0, 0, 0),
+        vec3.fromValues(0.5, 0.5, 0.5)
+      )
+    );
     testEntity.add(
       new Renderable(createCube(gl), {
         color: vec4.fromValues(1, 0, 0, 1),

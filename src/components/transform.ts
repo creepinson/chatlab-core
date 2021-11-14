@@ -1,4 +1,4 @@
-import { mat4, vec3 } from "gl-matrix";
+import { mat4, vec3, quat } from "gl-matrix";
 import { Component } from "typed-ecstasy";
 
 /**
@@ -24,11 +24,17 @@ export class Transform extends Component {
    */
   createMatrix() {
     const matrix = mat4.create();
-    mat4.translate(matrix, matrix, this.position);
-    mat4.rotateX(matrix, matrix, this.rotation[0]);
-    mat4.rotateY(matrix, matrix, this.rotation[1]);
-    mat4.rotateZ(matrix, matrix, this.rotation[2]);
-    mat4.scale(matrix, matrix, this.scale);
+    mat4.fromRotationTranslationScale(
+      matrix,
+      quat.fromEuler(
+        quat.create(),
+        this.rotation[0],
+        this.rotation[1],
+        this.rotation[2]
+      ),
+      this.position,
+      this.scale
+    );
     return matrix;
   }
 }
